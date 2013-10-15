@@ -109,12 +109,19 @@ class clsquerytable
 	$NewURL = the $URL the link will send you see next variable for how string is parced
 	$NewLinkRowVar = the value in the row set by this variable replaces '###' in the above string
 	$NewLrvVisible = if you want the LinkRowVar column to be visible set this to 'visible' otherwise set it to 'Invisible';
+	$popup = if this is not = 'no' then its a jscript pupup with conditions set by the value of $popup
 	*/
-	public function SetColumnLink($NewRowLink, $NewUrl, $NewLinkRowVar,$NewLrvVisible = 'Visible')
+	public function SetColumnLink($NewRowLink, $NewUrl, $NewLinkRowVar,$NewLrvVisible = "Visible", $popup = "no")
 	{
 
 		if ($NewLrvVisible == 'Invisible'){
 			$this->HideCol($NewLinkRowVar);		
+		}
+		
+		if ($popup == 'no'){
+			$NewUrl = 'href = "'.$NewUrl.'"'; // normal link
+		} else {
+			$NewUrl = 'href = "'.$NewUrl.'"  onclick="window.open('."'".$NewUrl."',".$popup.'); return false"'; //jscript link
 		}
 		
 		//set the index to the next number 
@@ -200,7 +207,7 @@ class clsquerytable
 							//check if this Col is a link
 							$ColLinkIndx = $this->IsColLink($key);
 							if (!$ColLinkIndx == null){
-								echo "<a href=".str_replace('###',$row[$this->ArrLinkCol[$ColLinkIndx]['LinkRowVar']],$this->ArrLinkCol[$ColLinkIndx]['LinkUrl']).">";
+								echo "<a ".str_replace('###',$row[$this->ArrLinkCol[$ColLinkIndx]['LinkRowVar']],$this->ArrLinkCol[$ColLinkIndx]['LinkUrl']).">";
 								echo $Record;
 								echo "</a>";
 							}else{

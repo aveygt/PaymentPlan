@@ -12,7 +12,7 @@
 				$PlanOnPlan = new clsQueryTable;
 				$PlanOnPlan->SetTitle("Payment Plan ");
 				$PlanOnPlan->SetTable("`ppdb`.`vwpayplansimple`","`ID` = '".$ID."'");
-				$PlanOnPlan->SetColumnLink('Scan',$HomeURL."PPScans/###",'Scan Location');
+				$PlanOnPlan->SetColumnLink('Scan',$HomeURL."PPScans/###",'Scan Location','Invisible',"'popup','width=500,height=600,resizable=yes,directories=no,toolbar=no,location=no,menubar=no,status=no,left=0,top=0'");
 				$PlanOnPlan->Hidecol('Freq ID');
 				$PlanOnPlan->Hidecol('Agent ID');
 				$PlanOnPlan->Hidecol('ID');
