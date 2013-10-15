@@ -59,7 +59,7 @@ SELECT
 		where `vwledgeronplan`.`Pay Plan ID` = `payplans`.`PayPlanID`
 	)								as 'Balance',
 
-	 (select @VarPastDue := (ifnull((	select sum(`DTD`.`Amount`) /* the sum of all that was due before now*/
+	 case when (select @VarPastDue := (ifnull((	select sum(`DTD`.`Amount`) /* the sum of all that was due before now*/
 		from `paymentschedules` as `DTD`
 		where `DTD`.`FKSchedulePayPlanID` =`payplans`.`PayPlanID`
 			and `DTD`.`DueDate` < CurDate()
@@ -68,7 +68,9 @@ SELECT
 		FROM ppdb.vwledgeronplan
 		where `vwledgeronplan`.`Pay Plan ID` = `payplans`.`PayPlanID`
 			and `vwledgeronplan`.`Date` <=CURDATE()
-	),0))) as  'Past Due',
+	),0))) <= 0 then
+		null 
+	else @VarPastDue end as  'Past Due',
 	
 	case
 		when @VarPastDue >= `payplans`.`PaymentAmount` then
