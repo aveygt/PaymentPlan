@@ -1,3 +1,5 @@
+<div class="PayPlansList" id="List90">
+
 <?php 
 		$PayPlanList = new clsQueryTable;
 	$ListTitle = "Plans Under 90 Days";
@@ -37,3 +39,6 @@
 	$PayPlanList->SetColumnLink('Defendant',$HomeURL."?page=/PaymentPlans/Report.php&ID=###",'ID','Invisible');
 	$PayPlanList->ShowTable();
 	unset($PayPlanList);
+	
+	?>
+	</div>

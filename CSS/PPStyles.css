@@ -59,9 +59,9 @@ TR {
 	white-space: pre;
 }
 
-Table td {
-	padding-left: 3;
-	padding-right: 3;
+Table td, Table th{
+	padding-left: 5;
+	padding-right: 5;
 }
 
 tr:nth-child(odd)	{ background-color:#d7e1ec; }

@@ -1,4 +1,4 @@
-
+<div class="PayPlansList" id="List">
 <?php 
 	$PayPlanList = new clsQueryTable;
 	$ListTitle = "All Plans";

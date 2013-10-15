@@ -1,0 +1,21 @@
+div.PayPlansList#ListOver90 table{
+    table-layout: auto;
+    width: 3250px;
+}
+
+div.PayPlansList table{
+    table-layout: auto;
+    width: 2000px;
+}
+
+div.PayPlansList td {
+    text-align: left;
+}
+
+div.PayPlansList td{
+	width: auto;
+}
+
+div.PayPlansList td.comments{
+    width: 100%;
+}

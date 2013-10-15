@@ -1,3 +1,4 @@
+<div class="PayPlansList" id="ListOver90">
 <?php 
 		$PayPlanList = new clsQueryTable;
 	$ListTitle = "All Collections Plans (Over 90 Days)";
@@ -21,7 +22,7 @@
 	
 	$PayPlanList->SetTablei($PPLQuery);
 	$PayPlanList->Hidecol('Agent ID');
-	$PayPlanList->Hidecol('Def Address 1');
+	/*$PayPlanList->Hidecol('Def Address 1');
 	$PayPlanList->Hidecol('Def Address 2');
 	$PayPlanList->Hidecol('Def City');
 	$PayPlanList->Hidecol('Def State');
@@ -29,7 +30,7 @@
 	$PayPlanList->Hidecol('Ind Address 1');
 	$PayPlanList->Hidecol('Ind Address 2');
 	$PayPlanList->Hidecol('Ind City');
-	$PayPlanList->Hidecol('Ind State');
+	$PayPlanList->Hidecol('Ind State');*/
 	$PayPlanList->Hidecol('Past Due CSS ID');
 	$PayPlanList->SetColCellID('Past Due','Past Due CSS ID');
 	$PayPlanList->Hidecol('Ind Zip Code');	
@@ -37,3 +38,4 @@
 	$PayPlanList->ShowTable();
 	unset($PayPlanList);
 ?> 
+</div>

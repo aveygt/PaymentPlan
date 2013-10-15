@@ -4,7 +4,7 @@
 	<link rel="stylesheet" type="text/css" href="./CSS/PPQueryTableStyles.css">
 	<link rel="stylesheet" type="text/css" href="./CSS/PPStyles.css">
 	<link rel="stylesheet" type="text/css" href="./CSS/PPReport.css">
-
+	<link rel="stylesheet" type="text/css" href="./CSS/PPList.css">
 	<title>Payment Plans</title>
 	
 

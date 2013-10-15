@@ -1,3 +1,4 @@
+<div class="PayPlansList" id="List90Del">
 <?php 
 	$PayPlanList = new clsQueryTable;
 	$ListTitle = "Delinquent Plans Under 90 Days";
@@ -49,3 +50,5 @@
 	$PayPlanList->ShowTable();
 	unset($PayPlanList);
 ?> 
+
+</div>
