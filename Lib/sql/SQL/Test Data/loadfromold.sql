@@ -16,6 +16,6 @@
 	FIELDS TERMINATED BY ',' 
 	ENCLOSED BY '"' 
 	ignore 1 lines
-	(plannum,agent,execdate,prevbal,pymntamount,pymntfreq,ledgerdate,ledgerdesc,ledgdebit,ledgcredit,duedate,amntdue,commentdate,comment,firstname,lastname,add1,add2,city,state,zip,phone,prefix,bondnum);
+	(plannum,agent,execdate,prevbal,pymntamount,pymntfreq,ledgerdate,ledgerdesc,ledgdebit,ledgcredit,duedate,amntdue,commentdate,comment,lastname,firstname,add1,add2,city,state,zip,phone,prefix,bondnum);
 
 	call PrcOldImport(1);
