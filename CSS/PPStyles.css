@@ -1,0 +1,87 @@
+* {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+body {
+background: #dadad8; /* Old browsers */
+}
+
+
+
+
+.alert.green {
+	padding: 5px 10px 5px 10px;
+	box-shadow: 0px 0px 10px #46555e;
+	border-radius: 10px; 
+	white-space: pre-wrap;
+	
+	background: #53db67; /* Old browsers */
+	background: -moz-linear-gradient(top,  #53db67 0%, #1a8e02 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#53db67), color-stop(100%,#1a8e02)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #53db67 0%,#1a8e02 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #53db67 0%,#1a8e02 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #53db67 0%,#1a8e02 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #53db67 0%,#1a8e02 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#53db67', endColorstr='#1a8e02',GradientType=0 ); /* IE6-9 */
+}
+
+div.Object {
+	background-color: #8c2e2c;
+	display: inline-block;
+	text-align: center;
+	Margin: 5;
+	box-shadow: 5px 5px 9px #46555e;
+	border-radius: 10px;  
+
+}
+
+div.Object .Object{
+	box-shadow: 0px 0px 0px;
+	width: 100%;
+	margin: 0;
+}
+
+div.Object .Header {
+	font-weight: bold;
+	color: White;
+	font-size: 25;
+}
+
+div.Object .Body {
+	background-color: #ffffff;
+}
+
+Table,
+TD,
+TR {
+	border-width: 0;
+	text-align: center;
+	white-space: pre;
+}
+
+Table td {
+	padding-left: 3;
+	padding-right: 3;
+}
+
+tr:nth-child(odd)	{ background-color:#d7e1ec; }
+tr:nth-child(even)	{ background-color:#FFFFFF; }
+
+thead  th{
+	border: 0;
+	background-color: #074870;
+	color: white;
+}
+
+tbody td{
+	vertical-align: top;	
+}
+
+/*
+	these are the styles that govern objects ability to colapse
+*/
+
+
+
+
+

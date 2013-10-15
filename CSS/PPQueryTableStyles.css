@@ -1,0 +1,9 @@
+td.Comments {
+		white-space: pre-wrap;
+		width: 400px;
+		text-align: left;
+}
+
+div#ListPayPlans table{
+	width: 2000px;
+}
