@@ -51,7 +51,6 @@ $Query = "
 	ignore 1 lines	
 	(CLastName,CFirstName,Caddress1,Caddress2,CCity,CState,CZipCode,CPhone,@VarDateExe,Alpha_pre,Power,Bl_due,Agent,ILastName,IFirstName,IAddress1,IAddress2,ICity,IState,IZipCode,IPhone)	
 	set DateExe = STR_TO_DATE(@VarDateExe,'%m/%d/%Y');";	
-				echo $Query;
 				GetQuery($Query);
 				$Query = "call prcpayplanimport('1');";	
 			}
