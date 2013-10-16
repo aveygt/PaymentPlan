@@ -53,6 +53,7 @@
 	unset($PayPlanList);
 	
 	$PPExcel = new clsQueryExcel();
+	$PPExcel->SetTablei($PPLQuery);
 	$PPExcel->GenBook();
 	unset($PPExcel);
 ?> 

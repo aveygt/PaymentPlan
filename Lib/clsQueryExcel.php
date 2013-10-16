@@ -6,9 +6,10 @@ class clsQueryExcel
 {
 	public	$Link;
 	public	$TableData;
-	public	$TableHeaders;
+	public	$SheetHeaders;
 	private $HiddenCols = array();
 	private $ExcelTitle;	
+	
 	
 	//on construct connect to the database
 	public function __construct()
@@ -48,26 +49,38 @@ class clsQueryExcel
 	{
 		$this->TableData = GetQuery($Query);
 		//print_r($this->TableData);
-		$this->TableHeaders = GetQuery($Query);
+		$this->SheetHeaders = GetQuery($Query);
 	}
 	
 	public function GenBook()
 	{
+		global $BaseDir;
+		
 		$QBook = new PHPExcel();
 		
 		$QBook->getProperties()->setCreator("PP System")
 							 ->setLastModifiedBy("PP System")
 							 ->setTitle("PHPExcel Test Document");
 		
-		$QBook->setActiveSheetIndex(0)
-			->setCellValue('A1','THIS IS A TEST');
-		//when page is loaded it will ask where to download or whatever
-		header('Content-Type: application/vnd.ms-excel');
-		header('Content-Disposition: attachment;filename="your_name.xls"');
-		header('Cache-Control: max-age=0');
+		$QBook->setActiveSheetIndex(0);
+		
+		//put the headers in
+		$header = $this->SheetHeaders->fetch_assoc();
+		$Column = "A";
+		$Row = 1;
+		foreach($header as $Key => $Record)
+		{
+			$QBook->setActiveSheetIndex(0)
+				->setCellValue($Column.$Row,$Key);
+				
+			// move to the next column	
+			$Column++;
+		}
+		
+		$QBook->setActiveSheetIndex(0);
 		
 		$writer = PHPExcel_IOFactory::createWriter($QBook, 'Excel2007');
-		$writer->save('php://output');
+		$writer->save($BaseDir.'\ExcelWorkBooks\Test.xlsx');
 	}
 }
 
