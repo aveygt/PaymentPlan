@@ -43,6 +43,8 @@ if (isset($_GET['Submit'])){
 			//echo $Query;
 			if ($Query=='ImportQuery'){
 				$Query = "
+	delete from loadednewplans;
+	
 	LOAD DATA LOCAL INFILE 'C:\\\wamp\\\www\\\PaymentPlan\\\Import\\\importfile.csv' INTO TABLE ppdb.loadednewplans 	
 	FIELDS TERMINATED BY ',' 	
 	ENCLOSED BY '".'"'."' 	
