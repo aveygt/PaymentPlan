@@ -235,7 +235,7 @@
 			$PaySchedQuery= str_replace('###',$ID,file_get_contents($BaseDir.'\PaymentPlans\Queries\ScheduleOnPlan.sql'));
 			//echo $PaySchedQuery;
 			$PaymentSchedule->SetTablei($PaySchedQuery);
-			$PSLink = $HomeURL.'?page=/PaymentPlans/Report.php&ID='.$ID.'&Submit=get&Query=call%20PrcPayScheduleDelete("###");&Confirm=Schedule%20Deleted#ScheduleAnchor';
+			$PSLink = $HomeURL."?page=/PaymentPlans/Report.php&ID=".$ID."&Submit=get&Query=call%20PrcPayScheduleDelete('###');&Confirm=Schedule%20Deleted#ScheduleAnchor";
 			$PaymentSchedule->SetColumnLink('delete',$PSLink,'Schedule ID','Invisible');
 			//$PSLink =$HomeURL.'?page=/PaymentPlans/Report.php&ID='.$ID.'&Submit=get&Query=call%20PrcScheduleAutoCCSwitch("###");&Confirm=Schedule%20AutoCC%20Set#ScheduleAnchor';
 			//$PaymentSchedule->SetColumnLink('Auto CC',$PSLink,'Schedule ID');

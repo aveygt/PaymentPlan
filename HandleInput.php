@@ -66,7 +66,7 @@ if (isset($_GET['Submit'])){
 				}	
 				
 
-				//echo "<span class='alert green' >".$Query."</span>";
+				echo "<span class='alert green' >".$Query."</span>";
 
 				GetQuery($Query);
 

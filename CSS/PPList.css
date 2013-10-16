@@ -3,6 +3,14 @@ div.PayPlansList#ListOver90 table{
     width: 3400px;
 }
 
+div.PayPlansList#DELETENEW table{
+    background: red;
+}
+div.PayPlansList#DELETENEW {
+    background: red;
+}
+
+
 div.PayPlansList table{
     table-layout: auto;
     width: 2000px;
