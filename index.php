@@ -29,6 +29,8 @@
 	include '/Lib/clsUL.php';
 	include 'HandleInput.php';
 	include '/Lib/PHPExcel.php';
+	include '/Lib/clsQueryExcel.php';
+
 
 	include 'menu.php';
 	

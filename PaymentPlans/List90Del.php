@@ -1,5 +1,7 @@
 <div class="PayPlansList" id="List90Del">
 <?php 
+	echo "</br><a href='".$HomeURL."/ExcelWorkBooks/List90Del.xls'> download the excel sheet</a>";
+
 	$PayPlanList = new clsQueryTable;
 	$ListTitle = "Delinquent Plans Under 90 Days";
 	
@@ -49,6 +51,10 @@
 	$PayPlanList->SetColumnLink('Defendant',$HomeURL."?page=/PaymentPlans/Report.php&ID=###",'ID','Invisible');
 	$PayPlanList->ShowTable();
 	unset($PayPlanList);
+	
+	$PPExcel = new clsQueryExcel();
+	$PPExcel->GenBook();
+	unset($PPExcel);
 ?> 
 
 </div>
