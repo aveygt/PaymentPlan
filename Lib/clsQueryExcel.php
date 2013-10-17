@@ -77,6 +77,21 @@ class clsQueryExcel
 			$Column++;
 		}
 		
+		//go through each row
+		while ($row=$this->TableData->fetch_assoc())
+		{
+			$Row++;
+			$Column = 'A';
+			//go through each column
+			foreach($row as $Key => $Record)
+			{
+				$QBook->setActiveSheetIndex(0)
+					->setCellValue($Column.$Row,$Record);
+				$Column++;
+			}
+		}
+		
+		
 		$QBook->setActiveSheetIndex(0);
 		
 		$writer = PHPExcel_IOFactory::createWriter($QBook, 'Excel2007');
