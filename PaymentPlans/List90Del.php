@@ -25,13 +25,13 @@
 		
 		$Agent = GetQuery("SELECT concat(`agents`.`LastName`,', ',`agents`.`FirstName`) as 'name' FROM `ppdb`.`agents` where AgentID = ".$_GET['agent'].";");
 		$AgentName = $Agent->fetch_assoc();
-		$PayPlanList->SetTitle($ListTitle." : ".$AgentName['name']);
+		$ListTitle = $ListTitle." : ".$AgentName['name'];
 	} else {
 		$replace = $Condition;
-		
-		$PayPlanList->SetTitle($ListTitle);
 	}
 	
+	
+	$PayPlanList->SetTitle($ListTitle);
 	$PPLQuery= str_replace('where###',$replace,file_get_contents($BaseDir.'\PaymentPlans\Queries\PaymentPlanList.sql'));
 	
 	$PayPlanList->SetTablei($PPLQuery);
@@ -53,8 +53,23 @@
 	unset($PayPlanList);
 	
 	$PPExcel = new clsQueryExcel();
-	$PPExcel->SetTablei($PPLQuery);
-	$PPExcel->GenBook();
+	$PPExcel->SetQuery($PPLQuery)
+		->SetTitle($ListTitle)
+		->Hidecol('ID')
+		->Hidecol('Agent  ID')
+		->Hidecol('Def Address 1')
+		->Hidecol('Def Address 2')
+		->Hidecol('Def City')
+		->Hidecol('Def State')
+		->Hidecol('Def Zip Code')
+		->Hidecol('Ind Address 1')
+		->Hidecol('Ind Address 2')
+		->Hidecol('Ind City')
+		->Hidecol('Ind State')
+		->Hidecol('Past Due CSS ID')
+		->Hidecol('Ind Zip Code')
+		->CreateSheet("Delinquent Plans");
+		
 	unset($PPExcel);
 ?> 
 
