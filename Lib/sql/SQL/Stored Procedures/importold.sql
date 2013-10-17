@@ -130,8 +130,8 @@ begin
 			VILastName	,	
 			VIAddress1	,
 			VIAddress2 ,
-			VIState	,	
 			VICity		,	
+			VIState,
 			VIZipcode 	,
 			VIPhone	,	
 
