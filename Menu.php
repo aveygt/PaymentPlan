@@ -52,6 +52,10 @@
 				<?php
 					echo "<li><a href='".$HomeURL."?page=/PaymentPlans/ListNew.php'>Edit New Plans</a></li>";
 				?>
+				<?php
+					echo "<li><a href='".$HomeURL."?page=/PaymentPlans/DELETENEWPLANS.php'>DELETE NEW PLANS</a></li>";
+				?>
+				
 			</ul>
 		</li>
 		<li><a href='#'>Lists</a>

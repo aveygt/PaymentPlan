@@ -207,6 +207,8 @@ class clsquerytable
 							//check if this Col is a link
 							$ColLinkIndx = $this->IsColLink($key);
 							if (!$ColLinkIndx == null){
+								//echo $this->ArrLinkCol[$ColLinkIndx]['LinkUrl'];
+								//echo "</br>".str_replace('###',$row[$this->ArrLinkCol[$ColLinkIndx]['LinkRowVar']],$this->ArrLinkCol[$ColLinkIndx]['LinkUrl']);
 								echo "<a ".str_replace('###',$row[$this->ArrLinkCol[$ColLinkIndx]['LinkRowVar']],$this->ArrLinkCol[$ColLinkIndx]['LinkUrl']).">";
 								echo $Record;
 								echo "</a>";

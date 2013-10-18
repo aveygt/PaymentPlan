@@ -78,7 +78,7 @@
 				$CustOnPlan->SetTitle("Customers");
 				$CustOnPlan->SetTable("`ppdb`.`vwcustomeronplan`","`Pay Plan ID` = '".$ID."'");
 				$CustOnPlan->SetColumnLink('First Name',$HomeURL."?page=/Customers/Report.php&ID=###",'Customer ID','Invisible');
-				$RmvLink = $HomeURL.'?page=/PaymentPlans/Report.php&ID='.$ID.'&Submit=get&Query=call%20PrcPayPlanCustomerDelete("'.$ID.'","###");&Confirm=Schedule%20Deleted#ScheduleAnchor';
+				$RmvLink = $HomeURL.'?page=/PaymentPlans/Report.php&ID='.$ID."&Submit=get&Query=call%20PrcPayPlanCustomerDelete('".$ID."','###');&Confirm=Schedule%20Deleted#ScheduleAnchor";
 				$CustOnPlan->SetColumnLink('Remove',$RmvLink,'Customer ID','Invisible');
 				$CustOnPlan->Hidecol('Pay Plan ID');
 				$CustOnPlan->ShowTable();
@@ -129,7 +129,7 @@
 				$BondOnPlan = new clsQueryTable;
 				$BondOnPlan->SetTitle("Bonds");
 				$BondOnPlan->SetTable("`ppdb`.`vwbondonplan`","`Pay Plan ID` = '".$ID."'");
-				$BOPUrl = $HomeURL.'?page=/PaymentPlans/Report.php&ID='.$ID.'&Submit=get&Query=call%20PrcPayPlanBondDelete("'.$ID.'","###");&Confirm=Schedule%20Deleted';
+				$BOPUrl = $HomeURL.'?page=/PaymentPlans/Report.php&ID='.$ID."&Submit=get&Query=call%20PrcPayPlanBondDelete('".$ID."','###');&Confirm=Schedule%20Deleted";
 				$BondOnPlan->SetColumnLink('Remove',$BOPUrl,'Bond ID');
 				$BondOnPlan->Hidecol('Pay Plan ID');
 				$BondOnPlan->Hidecol('Bond ID');
@@ -188,7 +188,7 @@
 			$LedgerOnPlan = new clsQueryTable;
 			$LedgerOnPlan->SetTitle("Ledger");
 			$LedgerOnPlan->SetTable("`ppdb`.`vwledgeronplan`","`Pay Plan ID` = '".$ID."'");
-			$LOPLink = $HomeURL.'?page=/PaymentPlans/Report.php&ID='.$ID.'&Submit=get&Query=call%20PrcLedgerEntryDelete("###");&Confirm=Schedule%20Deleted#LedgerAnchor';
+			$LOPLink = $HomeURL.'?page=/PaymentPlans/Report.php&ID='.$ID."&Submit=get&Query=call%20PrcLedgerEntryDelete('###');&Confirm=Schedule%20Deleted#LedgerAnchor";
 			$LedgerOnPlan->SetColumnLink('Delete',$LOPLink,'Entry ID');
 			$LedgerOnPlan->Hidecol('Pay Plan ID');
 			$LedgerOnPlan->Hidecol('Bond ID');
@@ -235,7 +235,7 @@
 			$PaySchedQuery= str_replace('###',$ID,file_get_contents($BaseDir.'\PaymentPlans\Queries\ScheduleOnPlan.sql'));
 			//echo $PaySchedQuery;
 			$PaymentSchedule->SetTablei($PaySchedQuery);
-			$PSLink = $HomeURL.'?page=/PaymentPlans/Report.php&ID='.$ID.'&Submit=get&Query=call%20PrcPayScheduleDelete("###");&Confirm=Schedule%20Deleted#ScheduleAnchor';
+			$PSLink = $HomeURL."?page=/PaymentPlans/Report.php&ID=".$ID."&Submit=get&Query=call%20PrcPayScheduleDelete('###');&Confirm=Schedule%20Deleted#ScheduleAnchor";
 			$PaymentSchedule->SetColumnLink('delete',$PSLink,'Schedule ID','Invisible');
 			//$PSLink =$HomeURL.'?page=/PaymentPlans/Report.php&ID='.$ID.'&Submit=get&Query=call%20PrcScheduleAutoCCSwitch("###");&Confirm=Schedule%20AutoCC%20Set#ScheduleAnchor';
 			//$PaymentSchedule->SetColumnLink('Auto CC',$PSLink,'Schedule ID');
