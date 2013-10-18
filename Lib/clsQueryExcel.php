@@ -57,7 +57,7 @@ class clsQueryExcel
 		return $this;
 	}
 	
-	public function SetActiveSheetIndex($Sheet){
+	public function CQEActiveSheet($Sheet){
 		$this->BookObj->setActiveSheetIndex($Sheet);
 		return $this;
 	}
@@ -68,7 +68,7 @@ class clsQueryExcel
 		$QBook =& $this->BookObj;
 		
 		$Column = "A";
-		$Row = 1;
+		$RowNum = 1;
 		
 
 		
@@ -81,8 +81,8 @@ class clsQueryExcel
 		//put the title in the sheet
 		if(isset($this->ExcelTitle)){
 			$QBook->setActiveSheetIndex(0)
-				->setCellValue('A'.$Row,$this->ExcelTitle);
-			$Row++;
+				->setCellValue('A'.$RowNum,$this->ExcelTitle);
+			$RowNum++;
 			//echo "THE TITLE IS SET";
 		}
 		
@@ -94,7 +94,7 @@ class clsQueryExcel
 			// check for hidden column
 			if(!$this->isColHidden($Key)){
 				$QBook->setActiveSheetIndex(0)
-					->setCellValue($Column.$Row,$Key);
+					->setCellValue($Column.$RowNum,$Key);
 			
 			// move to the next column	
 			$Column++;
@@ -107,20 +107,24 @@ class clsQueryExcel
 			$QBook->setActiveSheetIndex(0)
 				->mergeCells("A1:".$Column."1");
 		}
+			
+	
+			
 		
 		//go through each row
 		while ($row=$this->TableData->fetch_assoc())
 		{
-			$Row++;
-			$Column = 'A';
+			$RowNum++;
+			$ColNum = 0;
 			//go through each column
 			foreach($row as $Key => $Record)
 			{
+				
 				//check for hidden column
 				if(!$this->isColHidden($Key)){
-					$QBook->setActiveSheetIndex(0)
-						->setCellValue($Column.$Row,$Record);
-					$Column++;
+					$QBook	->getActiveSheet()
+							->setCellValueByColumnAndRow($ColNum, $RowNum, $Record);
+					$ColNum++;
 				}
 			}
 		}

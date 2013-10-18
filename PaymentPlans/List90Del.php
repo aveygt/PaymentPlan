@@ -78,7 +78,7 @@
 			->CreateSheet("Delinquent Plans");
 		
 		
-	$PPExcel->SetActiveSheetIndex(0)	
+	$PPExcel->CQEActiveSheet(0)	
 			->SaveWorkBook($ExcelLocation);
 		
 	unset($PPExcel);
