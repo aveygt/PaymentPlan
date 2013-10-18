@@ -1,6 +1,5 @@
 <div class="PayPlansList" id="List90Del">
 <?php 
-	echo "</br><a href='".$HomeURL."/ExcelWorkBooks/List90Del.xls'> download the excel sheet</a>";
 
 	$PayPlanList = new clsQueryTable;
 	$ListTitle = "Delinquent Plans Under 90 Days";
@@ -16,20 +15,28 @@
 			and `vwledgeronplan`.`Date` <=CURDATE()
 	),0) > 0';
 	
-	
-	
+	//set the location of the Excel Sheet
+	$ExcelName = '90Delinquent.xlsx';
 	
 		// catch the agent ID
 	if (isset($_GET['agent'])){
 		$replace = $Condition." and `agents`.`AgentID` = ".$_GET['agent'];
 		
-		$Agent = GetQuery("SELECT concat(`agents`.`LastName`,', ',`agents`.`FirstName`) as 'name' FROM `ppdb`.`agents` where AgentID = ".$_GET['agent'].";");
+		//figure out the agent name
+		$Agent = GetQuery("SELECT concat(`agents`.`LastName`,', ',`agents`.`FirstName`) as 'name', `Initials` as 'IN' FROM `ppdb`.`agents` where AgentID = ".$_GET['agent'].";");
 		$AgentName = $Agent->fetch_assoc();
 		$ListTitle = $ListTitle." : ".$AgentName['name'];
+		
+		//set the name of the excel sheet
+		$ExcelName = $AgentName['IN'].$ExcelName;
 	} else {
 		$replace = $Condition;
 	}
 	
+	$ExcelLocation = $BaseDir.'\ExcelWorkBooks\\'.$ExcelName;
+	$ExcelUrl = $HomeURL.'/ExcelWorkBooks/'.$ExcelName;
+	
+	echo "</br><a href='".$ExcelUrl."'> Download excel Workbook</a>";	
 	
 	$PayPlanList->SetTitle($ListTitle);
 	$PPLQuery= str_replace('where###',$replace,file_get_contents($BaseDir.'\PaymentPlans\Queries\PaymentPlanList.sql'));
@@ -54,21 +61,25 @@
 	
 	$PPExcel = new clsQueryExcel();
 	$PPExcel->SetQuery($PPLQuery)
-		->SetTitle($ListTitle)
-		->Hidecol('ID')
-		->Hidecol('Agent  ID')
-		->Hidecol('Def Address 1')
-		->Hidecol('Def Address 2')
-		->Hidecol('Def City')
-		->Hidecol('Def State')
-		->Hidecol('Def Zip Code')
-		->Hidecol('Ind Address 1')
-		->Hidecol('Ind Address 2')
-		->Hidecol('Ind City')
-		->Hidecol('Ind State')
-		->Hidecol('Past Due CSS ID')
-		->Hidecol('Ind Zip Code')
-		->CreateSheet("Delinquent Plans");
+			->SetTitle($ListTitle)
+			->Hidecol('ID')
+			->Hidecol('Agent  ID')
+			->Hidecol('Def Address 1')
+			->Hidecol('Def Address 2')
+			->Hidecol('Def City')
+			->Hidecol('Def State')
+			->Hidecol('Def Zip Code')
+			->Hidecol('Ind Address 1')
+			->Hidecol('Ind Address 2')
+			->Hidecol('Ind City')
+			->Hidecol('Ind State')
+			->Hidecol('Past Due CSS ID')
+			->Hidecol('Ind Zip Code')
+			->CreateSheet("Delinquent Plans");
+		
+		
+	$PPExcel->SetActiveSheetIndex(0)	
+			->SaveWorkBook($ExcelLocation);
 		
 	unset($PPExcel);
 ?> 

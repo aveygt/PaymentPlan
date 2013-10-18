@@ -9,11 +9,13 @@ class clsQueryExcel
 	public	$SheetHeaders;
 	private $HiddenCols = array();
 	private $ExcelTitle;	
+	public $BookObj;
 	
 	
 	//on construct connect to the database
 	public function __construct()
 	{
+		$this->BookObj = new PHPExcel();
 	}
 	
 	//on destruct close connection to the database
@@ -55,14 +57,20 @@ class clsQueryExcel
 		return $this;
 	}
 	
+	public function SetActiveSheetIndex($Sheet){
+		$this->BookObj->setActiveSheetIndex($Sheet);
+		return $this;
+	}
+	
 	public function CreateSheet($SheetName)
 	{
 		global $BaseDir;
+		$QBook =& $this->BookObj;
 		
 		$Column = "A";
 		$Row = 1;
 		
-		$QBook = new PHPExcel();
+
 		
 		$QBook->getProperties()->setCreator("PP System")
 							 ->setLastModifiedBy("PP System")
@@ -75,7 +83,7 @@ class clsQueryExcel
 			$QBook->setActiveSheetIndex(0)
 				->setCellValue('A'.$Row,$this->ExcelTitle);
 			$Row++;
-			echo "THE TITLE IS SET";
+			//echo "THE TITLE IS SET";
 		}
 		
 		//put the headers in
@@ -93,10 +101,12 @@ class clsQueryExcel
 			}
 		}
 		
-		//merge the title cells
-		$Column = chr(ord($Column) - 1); // rol the column back one
-		$QBook->setActiveSheetIndex(0)
-			->mergeCells("A1:".$Column."1");
+		//merge the title cells if there is a title
+		if(isset($this->ExcelTitle)){
+			$Column = chr(ord($Column) - 1); // rol the column back one
+			$QBook->setActiveSheetIndex(0)
+				->mergeCells("A1:".$Column."1");
+		}
 		
 		//go through each row
 		while ($row=$this->TableData->fetch_assoc())
@@ -114,11 +124,12 @@ class clsQueryExcel
 				}
 			}
 		}
-		
-		$QBook->setActiveSheetIndex(0);
-		
-		$writer = PHPExcel_IOFactory::createWriter($QBook, 'Excel2007');
-		$writer->save($BaseDir.'\ExcelWorkBooks\Test.xlsx');
+	}
+	
+	public function SaveWorkBook($Location)
+	{
+		$writer = PHPExcel_IOFactory::createWriter($this->BookObj, 'Excel2007');
+		$writer->save($Location);
 	}
 }
 
